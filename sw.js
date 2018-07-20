@@ -12,7 +12,11 @@ self.addEventListener('install', function(event){
             '/',
             'img/',
             'css/styles.css',
-            'js/main.js'
+            'js/',
+            'index.html',
+            'restaurant.html',
+            'package.json',
+            'data/'
         ]);
         })
     );
