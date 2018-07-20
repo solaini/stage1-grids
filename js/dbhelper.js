@@ -143,6 +143,7 @@ class DBHelper {
    * Restaurant page URL.
    */
   static urlForRestaurant(restaurant) {
+    console.log(restaurant.id);
     return (`./restaurant.html?id=${restaurant.id}`);
   }
 
