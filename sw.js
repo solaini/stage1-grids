@@ -1,3 +1,7 @@
+/*
+@reviewCache is the static name for the new cache version
+*/
+
 let reviewCache = 'stage1-v2';
 
 
