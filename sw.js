@@ -1,5 +1,7 @@
 /*
 @reviewCache is the static name for the new cache version
+Updates to fetch event are leveraging code from Google's website on the service worker
+found at: https://developers.google.com/web/fundamentals/primers/service-workers/
 */
 
 let reviewCache = 'stage1-v2';
@@ -42,8 +44,23 @@ self.addEventListener('activate', function(event){
 self.addEventListener('fetch', function(event){
     event.respondWith(
         caches.match(event.request).then(function(response){
-        if(response) return response;
-        return fetch(event.request);
+            //Returns repsonse if cache is found
+            if(response) return response;
+        const fetchRequest = event.request.clone();
+
+        return fetch(fetchRequest).then(
+            function(response){
+                if(!response || response.status !== 200 || response.type !=='basic'){
+                    return response;
+                }
+
+                var responseToCache = response.clone();
+
+                caches.open(reviewCache).then(function(cache){
+                    cache.put(event.request, responseToCache);
+                })
+            }
+        )    
     })
     );
 });
