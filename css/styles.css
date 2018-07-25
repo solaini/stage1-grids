@@ -293,3 +293,25 @@ nav h1 a {
     grid-template-columns: auto auto auto;
   }
 }
+
+
+@media screen and (max-width: 850px){
+  main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  #map-container {
+    display: none;
+  }
+  #restaurant-container, #maincontent, #reviews-container{
+    width: 100%;
+    padding-top:70px 0px;
+    justify-content: center;
+    /* order: -1; */
+  }
+  #breadcrumb{
+    width: 100%;
+  }
+  
+}
