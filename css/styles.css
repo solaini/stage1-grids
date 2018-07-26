@@ -306,12 +306,13 @@ nav h1 a {
   }
   #restaurant-container, #maincontent, #reviews-container{
     width: 100%;
-    padding-top:70px 0px;
+    padding: 0;
     justify-content: center;
-    /* order: -1; */
+    align-content: center;
   }
-  #breadcrumb{
+  #breadcrumb, .inside #footer{
     width: 100%;
+    padding: 0;
   }
   
 }
