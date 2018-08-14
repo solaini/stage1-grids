@@ -4,7 +4,7 @@ Updates to fetch event are leveraging code from Google's website on the service 
 found at: https://developers.google.com/web/fundamentals/primers/service-workers/
 */
 
-let reviewCache = 'stage1-v2';
+let reviewCache = 'stage2-v1';
 
 
 self.addEventListener('install', function(event){
