@@ -7,7 +7,13 @@ var browserify = require('gulp-browserify');
 
 gulp.task('default', function(){
     console.log(`this is working?`);
-    gulp.watch('js/*.js', ['lint']);
+    //gulp.watch('js/*.js', ['lint']);
+
+    browserSync.init({
+        server: {
+            baseDir: "./"
+        }
+    })
     // gulp.src(css/styles.css)
     //     .pipe(autoprefixer({
     //         browsers: ['last 2 versions'],
@@ -16,6 +22,7 @@ gulp.task('default', function(){
     //     .pipe(gulp.dest('dist'))
 });
 
+
 gulp.task('scripts', function() {
     // Single entry point to browserify
     gulp.src('js/sw.js')
@@ -23,11 +30,7 @@ gulp.task('scripts', function() {
           insertGlobals : true,
           debug : !gulp.env.production
         }))
-        .pipe(gulp.dest('./build/js'))
+        .pipe(concat(''))
+        .pipe(gulp.dest('dist/js'))
 });
 
-var browserSync = require('broswer-sync').create();
-browserSync.init({
-    server: "./"
-});
-browserSync.stream();
