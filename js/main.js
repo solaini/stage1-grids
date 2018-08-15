@@ -4,7 +4,7 @@ let restaurants,
 var newMap
 var markers = []
 
-import idb from 'idb';
+
 
 /**
  * Fetch neighborhoods and cuisines as soon as the page is loaded.
@@ -227,24 +227,27 @@ if(navigator.serviceWorker){
 
 
 //Adding IndexedDB files to main.js
-if(!('indexedDB' in window)){
-  console.log('This browser does not support IndexedDB');
-  return;
-}
-
-
-
-var dbPromise = idb.open('stage-2', 1, function(upgradeDb){
-  switch(upgradeDb.oldVersion){
-      case 0:
-          var keyValStore = upgradeDb.createObjectStore('keyVal');
-          keyValStore.put('world', 'hello');
-      case 1:
-          upgradeDb.createObjectStore('restaurant', {keyPath: 'name'});
-      
-  }
-  
+console.log(`Reached the db promise section`);
+var dbPromise = idb.open('resaurants-v1', 1, function(upgradeDb){
+  console.log(`Working on adding information`);
 });
+
+
+
+// var dbPromise = idb.open('stage-2', 1, function(upgradeDb){
+//   console.log(`Making a new object `)
+//   var keyVal
+  
+//   switch(upgradeDb.oldVersion){
+//       case 0:
+//           var keyValStore = upgradeDb.createObjectStore('keyVal');
+//           keyValStore.put('world', 'hello');
+//       case 1:
+//           upgradeDb.createObjectStore('restaurant', {keyPath: 'name'});
+      
+//   }
+  
+// });
 
 
 
