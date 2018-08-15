@@ -4,7 +4,7 @@ Updates to fetch event are leveraging code from Google's website on the service 
 found at: https://developers.google.com/web/fundamentals/primers/service-workers/
 */
 
-let reviewCache = 'stage2-v1';
+let reviewCache = 'stage2-v2';
 
 
 self.addEventListener('install', function(event){
@@ -47,7 +47,7 @@ self.addEventListener('fetch', function(event){
             //Returns repsonse if cache is found
             if(response) return response;
         const fetchRequest = event.request.clone();
-
+            console.log(response.json());
         return fetch(fetchRequest).then(
             function(response){
                 if(!response || response.status !== 200 || response.type !=='basic'){

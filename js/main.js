@@ -4,6 +4,8 @@ let restaurants,
 var newMap
 var markers = []
 
+import idb from 'idb';
+
 /**
  * Fetch neighborhoods and cuisines as soon as the page is loaded.
  */
@@ -220,3 +222,61 @@ if(navigator.serviceWorker){
     console.log('Registration failed');
 });
 }
+
+
+
+
+//Adding IndexedDB files to main.js
+if(!('indexedDB' in window)){
+  console.log('This browser does not support IndexedDB');
+  return;
+}
+
+
+
+var dbPromise = idb.open('stage-2', 1, function(upgradeDb){
+  switch(upgradeDb.oldVersion){
+      case 0:
+          var keyValStore = upgradeDb.createObjectStore('keyVal');
+          keyValStore.put('world', 'hello');
+      case 1:
+          upgradeDb.createObjectStore('restaurant', {keyPath: 'name'});
+      
+  }
+  
+});
+
+
+
+
+// dbPromise.then(function(db){
+//     var tx = db.transaction('keyval');
+//     var keyValStore = tx.objectStore('keyval');
+//     return keyValStore.get('hello');
+// }).then(val => console.log(`The value of hello is ${val}`));
+
+
+// dbPrimise.then(function(db) {
+//     var tx = db.transaction('keyval', 'readwrite');
+//     var keyValStore = tx.objectStore('keyval');
+//     keyValStore.put('bar', 'foo');
+//     return tx.complete;
+// }).then(function(){
+//     console.log(`Added foo:bar to keyval`);
+// });
+
+// dbPromise.then(function(db){
+//     var tx = db.transaction('restaurant', 'readwrite');
+//     var restaurantStore = tx.objectStore('restaurant');
+
+//     restaurantStore.put({
+//         name: restaurant.name,
+//         image: image.src,
+//         neighborhood: restaurant.neighborhood,
+//         address: restaurant.address
+//     });
+
+//     return tx.complete;
+// }).then(function(){
+//     console.log(`Restaurant ${restaurant.name} stored successfully.`);
+// })
