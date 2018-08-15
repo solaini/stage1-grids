@@ -227,9 +227,15 @@ if(navigator.serviceWorker){
 
 
 //Adding IndexedDB files to main.js
-console.log(`Reached the db promise section`);
-var dbPromise = idb.open('resaurants-v1', 1, function(upgradeDb){
+var dbPromise = idb.open('resaurants-v1', 2, function(upgradeDb) {
   console.log(`Working on adding information`);
+  switch(upgradeDb.oldVersion){
+    case 0:
+      var keyValStore = upgradeDb.createObjectStore('keyVal');
+      keyValStore.put('world', 'hello');
+    case 1:
+      upgradeDb.createObjestStore('restaurant', {keyPath: 'name'});
+  }
 });
 
 

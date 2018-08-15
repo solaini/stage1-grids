@@ -3,8 +3,21 @@
 Updates to fetch event are leveraging code from Google's website on the service worker
 found at: https://developers.google.com/web/fundamentals/primers/service-workers/
 */
+import idb from 'idb';
+
 
 let reviewCache = 'stage2-v2';
+
+//Adding IndexedDB files to main.js
+const dbPromise = idb.open('resaurants-v1', 1, function(upgradeDb) {
+  console.log(`Working on adding information`);
+  switch(upgradeDb.oldVersion){
+    case 0:
+       upgradeDb.createObjectStore('restaurants', {keyPath: "id"});
+  }
+});
+
+
 
 
 self.addEventListener('install', function(event){
