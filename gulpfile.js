@@ -30,7 +30,6 @@ gulp.task('scripts', function() {
           insertGlobals : true,
           debug : !gulp.env.production
         }))
-        .pipe(concat(''))
-        .pipe(gulp.dest('dist/js'))
+        .pipe(gulp.dest('dist/bundle.js'))
 });
 
