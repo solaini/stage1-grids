@@ -27,7 +27,7 @@ self.addEventListener('install', function(event){
             '/',
             'img/',
             'css/styles.css',
-            'js/',
+            '/src/js/',
             'index.html',
             'restaurant.html',
             'package.json',
